@@ -30,7 +30,7 @@ var EVENT_TITLE = "Базаргүл Сейітжанқызының 60 жас м�
   // ---- RSVP -> Google Sheets (через Google Apps Script Web App) ----
   // 1. Инструкция по настройке — в файле README.md
   // 2. Вставьте сюда URL вашего Apps Script веб-приложения:
-  var GOOGLE_SCRIPT_URL = "ВСТАВЬТЕ_СЮДА_URL_ВАШЕГО_APPS_SCRIPT";
+  var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwP7a_fimKQQAf_URcxQVEMuUgVKbyUDGmHBmyPxhUFnyQZOyJ3Y2sXqEMq9KNFFilSqg/exec";
 
   document.getElementById('rsvp-form').addEventListener('submit', function(e){
     e.preventDefault();

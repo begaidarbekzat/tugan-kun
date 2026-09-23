@@ -15,7 +15,7 @@ var EVENT_TITLE = "Базаргүл Сейітжанқызының 60 жас м�
   tick(); setInterval(tick,1000);
 
   // Route button
-  document.getElementById('route-btn').href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Ак тілек мейрамханасы Жезқазған");
+
 
   // RSVP radios
   var chosen = null;

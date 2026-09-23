@@ -1,0 +1,177 @@
+:root{
+  --bg:#0a0e17; --panel:#10141f; --panel2:#151a27;
+  --gold:#cfa356; --gold-lt:#e7c988; --gold-dim:#8a6f3d;
+  --cream:#f3ead9; --muted:#b9ae98;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*{box-sizing:border-box;}
+html,body{margin:0;background:#05070c;}
+body{
+  font-family:'Cormorant Garamond',serif; color:var(--cream);
+  display:flex; justify-content:center; overflow-x:hidden;
+  background:
+    radial-gradient(900px 600px at 50% -10%, rgba(207,163,86,0.08), transparent 60%),
+    #05070c;
+}
+.page{width:100%;max-width:520px;background:var(--bg);position:relative;}
+.wrap{padding:0 22px;}
+a{color:inherit;}
+
+@media (min-width:620px){
+  body{padding:40px 20px;}
+  .page{
+    max-width:560px; border-radius:18px; overflow:hidden;
+    box-shadow:0 40px 90px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(207,163,86,0.25);
+  }
+}
+@media (min-width:900px){
+  body{padding:56px 20px;}
+  .page{max-width:600px;}
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative; padding:0;
+  background:
+    radial-gradient(600px 380px at 78% 15%, rgba(207,163,86,0.16), transparent 60%),
+    radial-gradient(500px 300px at 10% 5%, rgba(207,163,86,0.12), transparent 55%),
+    linear-gradient(180deg,#0d1220 0%, #0a0e17 100%);
+  overflow:hidden;
+}
+.blok1{
+  width: 100%;
+}
+.hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.icon-btn{width:22px;height:22px;color:var(--gold);}
+.kicker{
+  font-family:'Montserrat',sans-serif; font-size:11.5px; letter-spacing:0.14em;
+  text-align:center; color:var(--gold-lt); line-height:1.6; margin:0 0 6px;
+}
+.mic-side{
+  position:absolute; left:10px; top:96px; width:96px; opacity:0.95;
+}
+.onair{
+  display:inline-flex; align-items:center; gap:5px; font-family:'Montserrat',sans-serif;
+  font-size:9px; font-weight:700; letter-spacing:0.08em; color:#e8c9c9;
+  border:1px solid #7a2f2f; padding:3px 7px; border-radius:3px; margin-bottom:8px;
+}
+.onair::before{content:"";width:6px;height:6px;border-radius:50%;background:#e2483f;box-shadow:0 0 6px #e2483f;}
+.horse-side{position:absolute; right:-14px; top:64px; width:220px; opacity:0.96;}
+.age-block{text-align:center; margin:4px 0 2px; position:relative; z-index:2;}
+.age-num{
+  font-family:'Marcellus',serif; font-size:104px; line-height:0.82; color:var(--gold-lt);
+  text-shadow:0 0 30px rgba(207,163,86,0.35);
+}
+.age-suffix{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:var(--gold); margin-left:4px;}
+.hero-name{
+  font-family:'Montserrat',sans-serif; font-weight:700; text-align:center;
+  font-size:24px; letter-spacing:0.03em; color:#fbf6ec; margin:6px 0 10px; line-height:1.25;
+}
+.hero-sub{
+  font-family:'Montserrat',sans-serif; font-size:11px; letter-spacing:0.05em; text-align:center;
+  color:var(--muted); margin:0 0 4px;
+}
+.hero-tagline{
+  position:absolute; right:20px; top:150px; font-style:italic; font-family:'Cormorant Garamond',serif;
+  color:var(--gold-lt); font-size:15px; opacity:0.9; transform:rotate(-3deg); z-index:2;
+}
+
+/* ---------- ORNAMENT ---------- */
+.ornament{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px 0 26px;}
+.ornament .line{height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.ornament svg{width:14px;height:14px;}
+
+/* ---------- POEM / TEXT ---------- */
+.section{
+  padding:0 22px;
+}
+.poem{text-align:center;font-style:italic;font-size:17px;line-height:1.8;color:var(--gold-lt);margin:0 0 4px;}
+.invite-text{text-align:center;font-size:16.5px;line-height:1.75;color:var(--cream);margin-top:4px;}
+.invite-text p{margin:0 0 14px;}
+.invite-text .lead{color:var(--gold-lt);font-size:17px;}
+.signature{text-align:right;margin-top:20px;font-style:italic;font-size:19px;color:var(--gold-lt);line-height:1.5;}
+
+/* ---------- INFO ROW ---------- */
+.info-row{display:flex;margin:30px 0 0;border-top:1px solid rgba(207,163,86,0.25);border-bottom:1px solid rgba(207,163,86,0.25);}
+.info-col{flex:1;padding:18px 8px;text-align:center;}
+.info-col + .info-col{border-left:1px solid rgba(207,163,86,0.2);}
+.info-icon{width:20px;height:20px;color:var(--gold);margin-bottom:8px;}
+.info-label{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.06em;color:var(--gold);margin-bottom:5px;}
+.info-value{font-size:15px;color:var(--cream);line-height:1.35;}
+
+/* ---------- COUNTDOWN ---------- */
+.countdown-section{margin-top:34px;padding:26px 22px 30px;position:relative;
+  background:
+    linear-gradient(180deg, rgba(10,14,23,0.55), rgba(10,14,23,0.85)),
+    linear-gradient(180deg,#3b2a4a 0%, #7a4a3d 38%, #c98a4b 62%, #4a3626 100%);
+}
+.countdown-title{font-family:'Montserrat',sans-serif;text-align:center;font-size:13px;letter-spacing:0.14em;color:var(--gold-lt);margin-bottom:16px;}
+.countdown{display:flex;justify-content:center;gap:9px;}
+.cd-box{background:rgba(8,10,16,0.88);border:1px solid rgba(207,163,86,0.4);border-radius:8px;padding:12px 4px;width:64px;text-align:center;}
+.cd-num{font-family:'Marcellus',serif;font-size:26px;color:var(--gold-lt);line-height:1;}
+.cd-lbl{font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:0.05em;color:var(--muted);margin-top:5px;}
+
+/* ---------- LOCATION ---------- */
+.location{margin:0 22px 0;display:flex;border-radius:10px;overflow:hidden;border:1px solid rgba(207,163,86,0.3);}
+.loc-photo{flex:1;min-height:150px;background:
+    linear-gradient(160deg, rgba(207,163,86,0.25), transparent 60%),
+    radial-gradient(120px 90px at 30% 70%, rgba(207,163,86,0.25), transparent),
+    #241a12;
+  position:relative;
+}
+.loc-photo svg{position:absolute;inset:0;width:100%;height:100%;}
+.loc-info{flex:1;background:var(--panel);padding:18px 14px;display:flex;flex-direction:column;justify-content:center;}
+.loc-pin{width:18px;height:18px;color:var(--gold);margin-bottom:6px;}
+.loc-label{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.06em;color:var(--gold);margin-bottom:6px;}
+.loc-name{font-size:16px;color:var(--cream);margin-bottom:3px;}
+.loc-city{font-size:14px;color:var(--muted);margin-bottom:12px;}
+.route-btn{
+  display:inline-flex;align-items:center;gap:6px;font-family:'Montserrat',sans-serif;font-size:11.5px;
+  font-weight:600;letter-spacing:0.02em;color:#0a0e17;background:linear-gradient(180deg,var(--gold-lt),var(--gold));
+  padding:8px 14px;border-radius:20px;text-decoration:none;width:fit-content;
+}
+
+/* ---------- RSVP ---------- */
+.rsvp-section{margin:32px 22px 0;background:var(--panel);border-radius:12px;border:1px solid rgba(207,163,86,0.25);
+  padding:24px 20px 26px; position:relative; overflow:hidden;}
+.rsvp-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:18px;letter-spacing:0.02em;color:var(--gold-lt);}
+.rsvp-sub{font-size:15px;color:var(--muted);margin:4px 0 18px;}
+.rsvp label{display:block;font-family:'Montserrat',sans-serif;font-size:10.5px;letter-spacing:0.04em;color:var(--gold);margin-bottom:6px;}
+.field-wrap{display:flex;align-items:center;gap:8px;border:1px solid rgba(207,163,86,0.35);border-radius:8px;padding:10px 12px;margin-bottom:18px;background:rgba(255,255,255,0.03);}
+.field-wrap svg{width:15px;height:15px;color:var(--gold);flex-shrink:0;}
+.field-wrap input,.field-wrap textarea{
+  flex:1;background:transparent;border:none;outline:none;color:var(--cream);
+  font-family:'Cormorant Garamond',serif;font-size:16px;resize:none;
+}
+.field-wrap textarea{min-height:44px;padding-top:2px;}
+.radio-group{margin-bottom:18px;}
+.radio-opt{display:flex;align-items:center;gap:9px;padding:8px 2px;cursor:pointer;font-size:15.5px;}
+.radio-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--gold);flex-shrink:0;position:relative;}
+.radio-opt.selected .radio-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--gold-lt);}
+.rsvp-submit{
+  width:100%;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:0.02em;
+  color:#0a0e17;background:linear-gradient(180deg,var(--gold-lt),var(--gold));border:none;border-radius:24px;
+  padding:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.rsvp-status{text-align:center;font-size:14px;margin-top:10px;min-height:18px;color:var(--gold-lt);}
+.rsvp-horse{position:absolute;right:-20px;bottom:-10px;width:120px;opacity:0.35;pointer-events:none;}
+.rsvp-toggle{text-align:center;font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:0.03em;color:var(--gold);margin-top:16px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+.rsvp-list{margin-top:14px;max-height:220px;overflow-y:auto;border-top:1px solid rgba(207,163,86,0.25);padding-top:12px;}
+.rsvp-entry{display:flex;justify-content:space-between;gap:10px;font-size:15px;padding:6px 2px;border-bottom:1px dashed rgba(207,163,86,0.15);}
+.rsvp-entry .en-name{color:var(--cream);}
+.rsvp-entry .en-status{color:var(--muted);font-size:13px;white-space:nowrap;}
+
+/* ---------- FOOTER ---------- */
+.footer{text-align:center;padding:34px 22px 46px;}
+.footer .foot-icon{width:26px;height:26px;color:var(--gold);margin-bottom:14px;}
+.footer p{margin:0 0 6px;font-size:16px;color:var(--cream);}
+.footer .sig{font-style:italic;color:var(--gold-lt);font-size:18px;}
+
+@media (max-width:360px){
+  .age-num{font-size:86px;}
+  .horse-side{width:180px;top:70px;}
+  .cd-box{width:56px;padding:10px 3px;}
+  .cd-num{font-size:22px;}
+}

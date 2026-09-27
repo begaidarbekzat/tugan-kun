@@ -18,20 +18,43 @@ window.addEventListener('scroll', function(){
 updateParallax();
 
 // ---- Плавное появление блоков при прокрутке ----
+// ---- Плавное появление блоков при прокрутке ----
 var revealEls = document.querySelectorAll('.reveal');
+
+function activate(el){
+  el.classList.add('in-view');
+
+  var grid = el.classList.contains('cal-grid') ? el : el.querySelector('.cal-grid');
+  if(grid){
+    var cells = grid.querySelectorAll('.cal-cell:not(.empty)');
+    cells.forEach(function(cell, i){
+      cell.style.transitionDelay = (i * 18) + 'ms';
+    });
+    requestAnimationFrame(function(){ grid.classList.add('in-view'); });
+  }
+
+  // построчное появление текста (стих, приглашение, подпись)
+  var lines = el.querySelectorAll('.line');
+  lines.forEach(function(line, i){
+    line.style.transitionDelay = (i * 110) + 'ms';
+  });
+}
+
 if('IntersectionObserver' in window){
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if(entry.isIntersecting){
-        entry.target.classList.add('in-view');
+        activate(entry.target);
         io.unobserve(entry.target);
       }
     });
   }, {threshold:0.12, rootMargin:'0px 0px -30px 0px'});
   revealEls.forEach(function(el){ io.observe(el); });
 } else {
-  revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  revealEls.forEach(function(el){ activate(el); });
 }
+
+
 
 // Countdown
 var target = new Date("2026-11-21T17:00:00+05:00").getTime();

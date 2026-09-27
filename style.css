@@ -1,3 +1,9 @@
+@font-face{
+  font-family:'AsylbekScript';
+  src:url('vAsylm13.ttf') format('truetype');
+  font-weight:normal; font-style:normal; font-display:swap;
+}
+
 :root{
   --bg-top:#04150f; --bg-bottom:#020c08;
   --panel:#0d2a20; --panel-soft:rgba(13,42,32,0.55);
@@ -10,8 +16,11 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth; overflow-x:hidden;}
 *{box-sizing:border-box;}
 html,body{margin:0; max-width:100%;}
+
+
+
 body{
-  font-family:'PT Serif', serif; color:var(--cream); font-size:18px;
+  font-family:'Cormorant Garamond', serif; color:var(--cream); font-size:18px;
   display:flex; justify-content:center; overflow-x:hidden;
   overflow-x:clip;
   background:
@@ -110,14 +119,14 @@ a{color:inherit;}
   100%{opacity:1;transform:translateX(0)}
 }
 .kicker{
-  font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.22em;
-  color:var(--gold-lt); line-height:1.7; margin:0 0 18px;
+  font-family:'Cormorant Garamond',serif; font-weight:600; font-size:15px; letter-spacing:0.22em;
+  color:var(--gold-lt); line-height:1; margin:0 0 18px;
   opacity:0;
   animation:heroKicker .9s cubic-bezier(.2,.7,.3,1) .1s both;
 }
 .age-block{margin:6px 0 8px; display:flex; align-items:baseline; justify-content:center; gap:10px;}
 .age-num{
-  font-family:'Marcellus',serif; font-size:118px; line-height:0.8; color:var(--gold-lt);
+  font-family:'Noto Serif',serif; font-size:118px; line-height:0.8; color:var(--gold-lt);
   background:linear-gradient(180deg,#f8e6bb, var(--gold) 70%);
   -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
   text-shadow:0 0 40px rgba(220,178,110,0.35);
@@ -126,13 +135,13 @@ a{color:inherit;}
   animation:heroAgeNum 1s cubic-bezier(.2,.8,.2,1) .38s both;
 }
 .age-suffix{
-  font-family:'PT Serif', serif; font-style:italic; font-size:30px; color:var(--gold);
+  font-family:'Cormorant Garamond', serif; font-style:italic; font-size:30px; color:var(--gold);
   opacity:0;
   display:inline-block;
   animation:heroAgeSuffix .7s cubic-bezier(.2,.7,.3,1) .82s both;
 }
 .hero-name{
-  font-family:'PT Serif', serif; font-weight:700; letter-spacing:0.04em;
+  font-family:'Cormorant Garamond', serif; font-weight:700; letter-spacing:0.04em;
   font-size:34px; color:#fdf8ec; margin:14px 0 0; line-height:1.28;
   text-shadow:0 4px 24px rgba(0,0,0,0.35);
 }
@@ -147,6 +156,77 @@ a{color:inherit;}
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
 }
 
+
+.calendar-card{
+  margin:38px 16px 0; padding:28px 22px 26px; border-radius:20px; text-align:center;
+  position:relative; z-index:2;
+  background:var(--panel-soft); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(220,178,110,0.3);
+}
+.cal-kicker{
+  font-family:'Cormorant Garamond',serif; font-style:italic; font-size:40px; color:var(--gold-lt); margin-bottom:10px;
+}
+.cal-datetime{
+  font-family:'Cormorant Garamond',serif; font-weight:700; font-size:36px; letter-spacing:0.02em; color:var(--cream);
+}
+.cal-time{
+  font-family:'Cormorant Garamond',serif; font-weight:600; font-size:32px; color:var(--cream); margin-bottom:18px;
+}
+.cal-month{
+  font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:700; font-size:36px; color:var(--gold-lt);
+  margin-bottom:20px;
+}
+.cal-grid{
+  display:grid; grid-template-columns:repeat(7,1fr); gap:6px 2px; max-width:300px; margin:0 auto;
+}
+.cal-weekday{
+  font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; letter-spacing:0.04em;
+  color:var(--gold); padding-bottom:6px;
+}
+.cal-cell{
+  font-family:'Cormorant Garamond',serif; font-size:26px; color:var(--muted); padding:6px 0;
+  display:flex; align-items:center; justify-content:center;
+}
+.cal-cell.empty{ visibility:hidden; }
+.cal-cell.highlight{
+  color:var(--gold-lt); font-weight:700; position:relative;
+}
+.cal-cell.highlight::before{
+  content:""; position:absolute; inset:1px; border:3px solid var(--gold);
+  border-radius:50%;
+}
+.cal-divider{
+  width:90px; height:1px; margin:22px auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+@media (max-width:360px){
+  .cal-grid{ max-width:260px; }
+  .cal-cell{ font-size:14px; }
+  .cal-month{ font-size:30px; }
+}
+
+
+
+/* Появление клеток календаря по одной */
+.cal-grid .cal-cell{
+  opacity:0; transform:scale(0.5);
+  transition:opacity 0.35s ease, transform 0.35s ease;
+}
+.cal-grid.in-view .cal-cell{ opacity:1; transform:scale(1); }
+.cal-grid.in-view .cal-cell.empty{ opacity:0; }
+
+/* Золотое кольцо появляется чуть позже и мягко пульсирует один раз */
+.cal-cell.highlight::before{
+  opacity:0; transform:scale(0.6);
+  transition:opacity 0.4s ease 0.7s, transform 0.4s ease 0.7s;
+}
+.cal-grid.in-view .cal-cell.highlight::before{ opacity:1; transform:scale(1); }
+
+
+
+
+
 /* ---------- ORNAMENT ---------- */
 .ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin:30px 0 28px; position:relative; z-index:2;}
 .ornament .line{height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
@@ -155,8 +235,8 @@ a{color:inherit;}
 /* ---------- POEM / TEXT ---------- */
 .section{padding:0 24px; position:relative; z-index:2;}
 .aktilek{width:100%; height:100%; object-fit:cover; display:block;}
-.poem{text-align:center;font-style:italic;font-weight:400;font-size:22px;line-height:1.85;color:var(--gold-lt);margin:0 0 4px;}
-.invite-text{text-align:center;font-size:20px;line-height:1.8;color:var(--cream);margin-top:4px;}
+.poem{font-family:'AsylbekScript',cursive;text-align:center;font-style:normal;font-weight:400;font-size:22px;line-height:1.7;color:var(--gold-lt);margin:0 0 4px;}
+.invite-text{text-align:center;font-size:22px;color:var(--cream);margin-top:4px;}
 .invite-text p{margin:0 0 17px;}
 .invite-text .lead{color:var(--gold-lt);font-size:20.5px;}
 .signature{text-align:right;margin-top:24px;font-style:italic;font-size:23px;color:var(--gold-lt);line-height:1.5;}
@@ -170,7 +250,7 @@ a{color:inherit;}
 .info-col{flex:1;padding:22px 8px;text-align:center;}
 .info-col + .info-col{border-left:1px solid rgba(220,178,110,0.22);}
 .info-icon{width:25px;height:25px;color:var(--gold);margin-bottom:10px;}
-.info-label{font-family:'Montserrat',sans-serif;font-size:11.5px;letter-spacing:0.07em;color:var(--gold-lt);margin-bottom:8px;font-weight:600;}
+.info-label{font-family:'Cormorant Garamond',serif;font-size:11.5px;letter-spacing:0.07em;color:var(--gold-lt);margin-bottom:8px;font-weight:600;}
 .info-value{font-size:18.5px;color:var(--cream);line-height:1.4;font-weight:400;}
 
 /* ---------- COUNTDOWN ---------- */
@@ -180,11 +260,11 @@ a{color:inherit;}
   backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
   border:1px solid rgba(220,178,110,0.3);
 }
-.countdown-title{font-family:'Montserrat',sans-serif;text-align:center;font-size:15px;letter-spacing:0.18em;color:var(--gold-lt);margin-bottom:20px;font-weight:600;}
+.countdown-title{font-family:'Cormorant Garamond',serif;text-align:center;font-size:24px;letter-spacing:0.18em;color:var(--gold-lt);margin-bottom:20px;font-weight:600;}
 .countdown{display:flex;justify-content:center;gap:10px;}
 .cd-box{background:rgba(2,12,8,0.72);border:1px solid rgba(220,178,110,0.4);border-radius:12px;padding:15px 4px;width:74px;text-align:center;transition:transform 0.15s ease;}
-.cd-num{font-family:'Marcellus',serif;font-size:33px;color:var(--gold-lt);line-height:1;}
-.cd-lbl{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.05em;color:var(--muted);margin-top:7px;}
+.cd-num{font-family:'Noto Serif',serif;font-size:33px;color:var(--gold-lt);line-height:1;}
+.cd-lbl{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.05em;color:var(--muted);margin-top:7px;}
 .cd-box.pulse{transform:scale(1.08);}
 
 /* ---------- LOCATION ---------- */
@@ -199,14 +279,25 @@ a{color:inherit;}
   padding:24px 20px;display:flex;flex-direction:column;
 }
 .loc-pin{width:23px;height:23px;color:var(--gold);margin-bottom:9px;}
-.loc-label{font-family:'Montserrat',sans-serif;font-size:11.5px;letter-spacing:0.07em;color:var(--gold-lt);margin-bottom:8px;font-weight:600;}
-.loc-name{font-size:21px;color:var(--cream);margin-bottom:5px;font-weight:700;}
-.loc-city{font-size:18px;color:var(--muted);margin-bottom:18px;}
+.loc-label{font-family:'Cormorant Garamond',serif;font-size:11.5px;letter-spacing:0.07em;color:var(--gold-lt);margin-bottom:8px;font-weight:600;}
+.loc-name{font-size:30px;color:var(--cream);margin-bottom:5px;font-weight:700;}
+.loc-city{font-size:24px;color:var(--muted);margin-bottom:18px;}
 .route-btn{
-  display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:14.5px;
-  font-weight:700;letter-spacing:0.02em;color:#04150f;background:linear-gradient(180deg,var(--gold-lt),var(--gold));
-  padding:12px 20px;border-radius:24px;text-decoration:none;width:fit-content;
-  transition:transform 0.15s ease, box-shadow 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    /* gap: 8px; */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #04150f;
+    background: linear-gradient(180deg, var(--gold-lt), var(--gold));
+    padding: 12px 20px;
+    border-radius: 24px;
+    text-decoration: none;
+    /* width: fit-content; */
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .route-btn:active{transform:scale(0.96);}
 
@@ -217,9 +308,9 @@ a{color:inherit;}
   border:1px solid rgba(220,178,110,0.32);
   padding:30px 22px 32px; position:relative; overflow:hidden; z-index:2;
 }
-.rsvp-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:23px;letter-spacing:0.02em;color:var(--gold-lt);}
-.rsvp-sub{font-size:19px;color:var(--muted);margin:6px 0 22px;}
-.rsvp label{display:block;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:0.04em;color:var(--gold-lt);margin-bottom:9px;font-weight:600;}
+.rsvp-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;letter-spacing:0.02em;color:var(--gold-lt);}
+.rsvp-sub{font-size:22px;color:var(--muted);margin:6px 0 22px;}
+.rsvp label{display:block;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.04em;color:var(--gold-lt);margin-bottom:9px;font-weight:600;}
 .field-wrap{
   display:flex;align-items:center;gap:10px;border:1px solid rgba(220,178,110,0.42);border-radius:12px;
   padding:14px 15px;margin-bottom:22px;background:rgba(0,0,0,0.18);
@@ -229,7 +320,7 @@ a{color:inherit;}
 .field-wrap svg{width:18px;height:18px;color:var(--gold);flex-shrink:0;}
 .field-wrap input,.field-wrap textarea{
   flex:1;background:transparent;border:none;outline:none;color:var(--cream);
-  font-family:'PT Serif', serif;font-size:19px;resize:none;
+  font-family:'Cormorant Garamond', serif;font-size:19px;resize:none;
 }
 .field-wrap textarea{min-height:52px;padding-top:2px;}
 .radio-group{margin-bottom:22px;}
@@ -239,7 +330,7 @@ a{color:inherit;}
 .radio-opt.selected .radio-dot{box-shadow:0 0 0 4px rgba(220,178,110,0.18);}
 .radio-opt.selected .radio-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--gold-lt);}
 .rsvp-submit{
-  width:100%;font-family:'Montserrat',sans-serif;font-weight:700;font-size:17.5px;letter-spacing:0.02em;
+  width:100%;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;letter-spacing:0.02em;
   color:#04150f;background:linear-gradient(180deg,var(--gold-lt),var(--gold));border:none;border-radius:28px;
   padding:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;
   transition:transform 0.15s ease, box-shadow 0.2s ease; box-shadow:0 8px 24px -8px rgba(220,178,110,0.5);
@@ -276,3 +367,12 @@ a{color:inherit;}
     animation:none !important; opacity:1 !important; transform:none !important; filter:none !important;
   }
 }
+
+
+/* Построчное появление стиха и текста приглашения */
+.line{
+  opacity:0; transform:translateY(16px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+  display:block;
+}
+.reveal.in-view .line{ opacity:1; transform:translateY(0); }
